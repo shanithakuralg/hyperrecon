@@ -14,7 +14,7 @@ CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-INSTALL_DIR="/opt/hyperrecon-pro"
+INSTALL_DIR="/opt/hyperrecon"
 DATA_DIR="/var/hyperrecon"
 LOG_DIR="/var/log/hyperrecon"
 USER="hyperrecon"
@@ -503,8 +503,8 @@ print_post_install() {
     echo "  5. Configure backups"
     echo
     print_status "For support and documentation:"
-    echo "  • GitHub: https://github.com/saurabhtomar/hyperrecon-pro"
-    echo "  • Issues: https://github.com/saurabhtomar/hyperrecon-pro/issues"
+    echo "  • GitHub: https://github.com/saurabhtomar/hyperrecon"
+    echo "  • Issues: https://github.com/saurabhtomar/hyperrecon/issues"
     echo
 }
 
