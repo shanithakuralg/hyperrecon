@@ -43,8 +43,8 @@ A comprehensive, production-ready reconnaissance framework designed for security
 
 ```bash
 # Clone repository
-git clone https://github.com/saurabhtomar/hyperrecon-pro.git
-cd hyperrecon-pro
+git clone https://github.com/saurabhtomar/hyperrecon.git
+cd hyperrecon
 
 # Install dependencies
 pip install -r requirements.txt
