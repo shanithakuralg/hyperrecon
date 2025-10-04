@@ -1,387 +1,277 @@
-# HyperRecon Pro v4.0 - Advanced Modular Bug Bounty Scanner
+# 🚀 HyperRecon Pro v4.0
 
-[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://python.org)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Production Ready](https://img.shields.io/badge/production-ready-brightgreen.svg)](docs/PRODUCTION.md)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://python.org)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-4.0.0-red.svg)](CHANGELOG.md)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/saurabhtomar/hyperrecon-pro/graphs/commit-activity)
 
-🚀 **HyperRecon Pro v4.0** is a comprehensive, modular reconnaissance tool designed for bug bounty hunters and security professionals. This refactored version features clean architecture, enhanced error handling, and production-ready deployment capabilities.
+> **Advanced Modular Bug Bounty Reconnaissance Tool**
 
-## 🎯 Key Features
+A comprehensive, production-ready reconnaissance framework designed for security researchers, penetration testers, and bug bounty hunters. Built with a modular architecture for scalability and maintainability.
 
-### 🏗️ Modular Architecture
-- **Clean separation of concerns** with utility-based modules
-- **Consistent interfaces** across all reconnaissance functions
-- **Easy extensibility** for adding new features
+## ✨ Features
+
+### 🔍 **Comprehensive Reconnaissance**
+- **Multi-source subdomain enumeration** (subfinder, assetfinder)
+- **Historical URL collection** (waybackurls, gau) with intelligent filtering
+- **Live host detection** (httpx) with status code categorization
+- **Technology fingerprinting** (whatweb) with custom detection
+- **Parameter discovery** (ParamSpider) with advanced extraction
+- **JavaScript endpoint analysis** with automated parsing
+- **Directory enumeration** (gobuster) with security-focused wordlists
+- **Vulnerability scanning** (nuclei) with CVE mapping
+- **Social media reconnaissance** across 16+ platforms
+- **Document analysis** with sensitive data detection
+
+### 🏗️ **Production Architecture**
+- **Modular design** with clean separation of concerns
+- **Graceful error handling** with detailed logging
+- **Multi-threading support** for parallel processing
+- **Real-time progress tracking** with workflow orchestration
 - **Centralized configuration** management
+- **Extensible plugin system** for custom tools
 
-### 🔍 Comprehensive Reconnaissance
-- **Subdomain enumeration** (subfinder, assetfinder)
-- **URL collection** (waybackurls, gau) with URO filtering
-- **HTTP probing** (httpx) with live host detection
-- **Technology detection** (whatweb + custom patterns)
-- **Parameter discovery** (ParamSpider) with enhanced filtering
-- **JavaScript analysis** with endpoint extraction
-- **Vulnerability scanning** (nuclei) with DAST capabilities
-- **Directory bruteforcing** (gobuster) with security checks
-- **Social media reconnaissance** across multiple platforms
-- **Sensitive data detection** with comprehensive patterns
-- **Document analysis** and extension organization
+### 📊 **Advanced Reporting**
+- **Interactive HTML reports** with data visualization
+- **Real-time result streaming** with organized output
+- **Security risk assessment** with finding categorization
+- **Comprehensive statistics** and filtering metrics
 
-### 🛡️ Production Features
-- **Robust error handling** with graceful degradation
-- **Dependency validation** with installation guidance
-- **Performance optimization** for large datasets
-- **Multi-threading support** for concurrent operations
-- **Comprehensive logging** and progress tracking
-- **HTML report generation** with responsive templates
-- **Data integrity validation** across all operations
+## 🛠️ Installation
 
-## 🚀 Quick Start
+### Quick Start
 
-### Prerequisites
-
-**Required Tools:**
-- Python 3.8+
-- subfinder
-- httpx
-- nuclei
-- gobuster
-
-**Optional Tools (for enhanced functionality):**
-- assetfinder
-- waybackurls
-- gau
-- whatweb
-- uro
-- gf
-- unfurl
-
-### Installation
-
-1. **Clone the repository:**
 ```bash
+# Clone repository
 git clone https://github.com/saurabhtomar/hyperrecon-pro.git
 cd hyperrecon-pro
-```
 
-2. **Install Python dependencies:**
-```bash
+# Install dependencies
 pip install -r requirements.txt
+
+# Run automated setup
+chmod +x install.sh && ./install.sh
 ```
 
-3. **Install required tools:**
+### Manual Installation
+
+<details>
+<summary>Click to expand manual installation steps</summary>
+
 ```bash
-# Install Go tools
+# Install Python dependencies
+pip install rich colorama requests pyyaml tqdm
+
+# Install required Go tools
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-go install -v github.com/projectdiscovery/nuclei/v3/cmd/nuclei@latest
-go install -v github.com/OJ/gobuster/v3@latest
+go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
 
-# Install optional tools
+# Install optional tools for enhanced functionality
 go install github.com/tomnomnom/assetfinder@latest
 go install github.com/tomnomnom/waybackurls@latest
 go install github.com/lc/gau/v2/cmd/gau@latest
 go install github.com/tomnomnom/gf@latest
 go install github.com/tomnomnom/unfurl@latest
+go install github.com/OJ/gobuster/v3@latest
 
-# Install URO (Python)
+# Install Python tools
 pip install uro
 
-# Install whatweb (Ruby)
-gem install whatweb
+# Clone ParamSpider
+git clone https://github.com/0xKayala/ParamSpider.git
 ```
 
-4. **Verify installation:**
-```bash
-python hyperrecon.py --validate-deps
-```
+</details>
 
-### Basic Usage
+## 🚀 Usage
 
-**Single domain scan:**
+### Basic Commands
+
 ```bash
+# Single domain reconnaissance
 python hyperrecon.py -d example.com
+
+# Multiple domains with threading
+python hyperrecon.py -d "example.com,test.com" -t 20
+
+# Domain list with HTML reports
+python hyperrecon.py -l domains.txt --html-reports
+
+# Subdomain-only scan (skip enumeration)
+python hyperrecon.py -s subdomain.example.com
 ```
 
-**Multiple domains:**
+### Advanced Usage
+
 ```bash
-python hyperrecon.py -d example.com,test.com,demo.com
+# Full scan with custom output
+python hyperrecon.py -d example.com -o /path/to/output --html-reports -v
+
+# Selective module execution
+python hyperrecon.py -d example.com --no-nuclei --no-gobuster --no-dast
+
+# High-performance scanning
+python hyperrecon.py -d example.com -t 50 --debug
 ```
 
-**With HTML report:**
-```bash
-python hyperrecon.py -d example.com -hr
-```
+### Command Reference
 
-**Custom output directory:**
-```bash
-python hyperrecon.py -d example.com -o /path/to/output
-```
-
-**Verbose mode with threading:**
-```bash
-python hyperrecon.py -d example.com -v -t 20
-```
-
-## 📖 Detailed Usage
-
-### Command Line Options
+<details>
+<summary>Complete command-line options</summary>
 
 ```
-usage: hyperrecon.py [-h] [-d DOMAIN] [-l LIST] [-o OUTPUT] [-t THREADS] 
-                     [-hr] [-v] [--debug] [--validate-deps] [--version]
+Target Selection:
+  -d, --domain DOMAIN     Target domain(s) (comma-separated)
+  -l, --list LIST         File containing domain list
+  -s, --subdomain SUB     Direct subdomain input (skips enumeration)
 
-HyperRecon Pro v4.0 - Advanced Modular Bug Bounty Scanner
+Output Control:
+  -o, --output OUTPUT     Custom output directory
+  -hr, --html-reports     Generate interactive HTML reports
+  -v, --verbose           Enable detailed output
+  --debug                 Enable debug logging
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d DOMAIN, --domain DOMAIN
-                        Target domain(s) (comma-separated)
-  -l LIST, --list LIST  File containing list of domains
-  -o OUTPUT, --output OUTPUT
-                        Output directory (default: hyperrecon_results_TIMESTAMP)
-  -t THREADS, --threads THREADS
-                        Number of threads (default: 10)
-  -hr, --html-report    Generate HTML report
-  -v, --verbose         Enable verbose output
-  --debug               Enable debug mode
-  --validate-deps       Validate tool dependencies
-  --version             Show version information
+Performance:
+  -t, --threads THREADS   Concurrent threads (default: 10)
+
+Module Control:
+  --no-nuclei            Disable vulnerability scanning
+  --no-gobuster          Disable directory enumeration
+  --no-paramspider       Disable parameter discovery
+  --no-gf                Disable pattern analysis
+  --no-js                Disable JavaScript analysis
+  --no-tech              Disable technology detection
+  --no-sensitive         Disable sensitive data detection
+  --no-security          Disable security checks
+  --no-dast              Disable DAST scanning
+  --no-wayback           Disable Wayback Machine
+  --no-gau               Disable GAU collection
+  --no-social            Disable social media recon
+  --no-documents         Disable document analysis
+
+Utilities:
+  --validate-deps        Check tool dependencies
+  --version              Show version information
+  --help                 Display help message
 ```
 
-### Advanced Usage Examples
+</details>
 
-**Scan from file with custom settings:**
-```bash
-python hyperrecon.py -l domains.txt -o custom_scan -t 15 -hr -v
-```
-
-**Debug mode for troubleshooting:**
-```bash
-python hyperrecon.py -d example.com --debug
-```
-
-**Validate all dependencies:**
-```bash
-python hyperrecon.py --validate-deps
-```
-
-## 🏗️ Architecture Overview
-
-### Directory Structure
-```
-hyperrecon-pro/
-├── hyperrecon.py              # Main orchestrator
-├── utils/                     # Utility modules
-│   ├── __init__.py           # Shared utilities
-│   ├── config.py             # Configuration management
-│   ├── file_manager.py       # File operations
-│   ├── uro_filter.py         # URL deduplication
-│   ├── subdomain_enum.py     # Subdomain enumeration
-│   ├── url_collection.py     # URL collection
-│   ├── http_probe.py         # HTTP probing
-│   ├── param_scan.py         # Parameter discovery
-│   ├── tech_detection.py     # Technology detection
-│   ├── js_analysis.py        # JavaScript analysis
-│   ├── vuln_scan.py          # Vulnerability scanning
-│   ├── dir_brute.py          # Directory bruteforcing
-│   ├── security_checks.py    # Security checks
-│   ├── sensitive_data.py     # Sensitive data detection
-│   ├── social_recon.py       # Social media recon
-│   ├── document_analyzer.py  # Document analysis
-│   ├── extension_organizer.py # Extension organization
-│   ├── gf_pattern_analyzer.py # GF pattern analysis
-│   ├── unfurl_analyzer.py    # URL analysis
-│   └── report.py             # HTML report generation
-├── config/                   # Configuration files
-│   ├── patterns.yaml         # Detection patterns
-│   └── tool_config.yaml      # Tool configurations
-├── docs/                     # Documentation
-├── tests/                    # Test suite
-└── examples/                 # Usage examples
-```
-
-### Core Components
-
-1. **Main Orchestrator** (`hyperrecon.py`)
-   - Workflow coordination
-   - User interface management
-   - Progress tracking
-   - Error handling coordination
-
-2. **Utility Modules** (`utils/`)
-   - Specialized reconnaissance functions
-   - Consistent interfaces
-   - Independent operation capability
-   - Comprehensive error handling
-
-3. **Configuration Management** (`config/`)
-   - Centralized pattern management
-   - Tool configuration
-   - Dependency validation
-
-## 📊 Output Structure
-
-Each scan creates an organized directory structure:
+## 📁 Output Structure
 
 ```
 hyperrecon_results_TIMESTAMP/
-└── domain.com/
-    ├── subdomains/
-    │   ├── subdomains.txt
-    │   ├── live_subdomains.txt
-    │   └── subdomain_sources.json
-    ├── urls/
-    │   ├── all_urls.txt
-    │   ├── filtered_urls.txt
-    │   └── url_sources.json
-    ├── parameters/
-    │   ├── parameterized_urls.txt
-    │   ├── parameter_patterns.txt
-    │   └── parameter_analysis.json
-    ├── technology_detection/
-    │   ├── technologies.json
-    │   ├── web_servers.txt
-    │   └── frameworks.txt
-    ├── vulnerabilities/
-    │   ├── nuclei_results.json
-    │   ├── vulnerability_summary.txt
-    │   └── dast_results.json
-    ├── directories/
-    │   ├── discovered_directories.txt
-    │   ├── security_paths.txt
-    │   └── directory_analysis.json
-    ├── javascript/
-    │   ├── js_files.txt
-    │   ├── extracted_endpoints.txt
-    │   └── js_analysis.json
-    ├── sensitive_data/
-    │   ├── sensitive_urls.txt
-    │   ├── config_files.txt
-    │   └── sensitive_patterns.json
-    ├── security_checks/
-    │   ├── security_findings.json
-    │   ├── misconfigurations.txt
-    │   └── security_summary.txt
-    ├── social_media_recon/
-    │   ├── social_profiles.json
-    │   ├── platform_results.txt
-    │   └── osint_summary.txt
-    ├── documents/
-    │   ├── document_analysis.json
-    │   ├── file_types.txt
-    │   └── document_summary.txt
-    ├── reports/
-    │   ├── domain_report.html
-    │   ├── summary.json
-    │   └── scan_metadata.json
-    └── logs/
-        ├── scan.log
-        ├── errors.log
-        └── performance.log
+└── target_domain/
+    ├── subdomains/           # Subdomain enumeration results
+    ├── urls/                 # Historical URL collection
+    ├── live_hosts/           # HTTP probing results
+    ├── parameters/           # Parameter discovery
+    ├── vulnerabilities/      # Security findings
+    ├── directories/          # Directory enumeration
+    ├── technology_detection/ # Tech stack identification
+    ├── js_analysis/          # JavaScript endpoints
+    ├── social_media_recon/   # OSINT findings
+    ├── documents/            # Document analysis
+    ├── extensions/           # File type organization
+    ├── gf_patterns/          # Pattern matching results
+    ├── security_checks/      # Security assessments
+    └── hyperrecon_report.html # Interactive report
 ```
 
-## 🧪 Testing
+## ⚙️ Configuration
 
-### Run All Tests
-```bash
-python run_all_tests.py
-```
-
-### Production Readiness Tests
-```bash
-python test_production_readiness.py
-```
-
-### Individual Module Tests
-```bash
-python test_core_functionality.py
-python test_comprehensive_validation.py
-python test_command_line_integration.py
-```
-
-## 🔧 Configuration
-
-### Pattern Configuration
-Edit `config/patterns.yaml` to customize detection patterns:
+### Tool Configuration (`config/tool_config.yaml`)
 
 ```yaml
-sensitive_data:
-  config_files:
-    - "*.config"
-    - "*.ini"
-    - "*.env"
-  backup_files:
-    - "*.bak"
-    - "*.backup"
-    - "*.old"
+required_tools:
+  - subfinder
+  - httpx
+  - nuclei
+
+optional_tools:
+  - assetfinder
+  - waybackurls
+  - gau
+  - gobuster
+  - whatweb
+  - unfurl
+  - gf
+  - uro
+  - paramspider
 ```
 
-### Tool Configuration
-Edit `config/tool_config.yaml` for tool-specific settings:
+### Custom Patterns (`config/patterns.yaml`)
 
 ```yaml
-tools:
-  subfinder:
-    timeout: 300
-    threads: 10
-  httpx:
-    timeout: 30
-    retries: 2
+sensitive_patterns:
+  api_keys: "(?i)(api[_-]?key|access[_-]?token)"
+  jwt_tokens: "eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+"
+  aws_keys: "AKIA[0-9A-Z]{16}"
+  # Add custom detection patterns
 ```
 
-## 🚀 Production Deployment
+## 🔧 Development
 
-### System Requirements
-- **OS:** Linux/macOS/Windows
-- **Python:** 3.8+
-- **Memory:** 4GB+ recommended
-- **Storage:** 10GB+ for large scans
-- **Network:** Stable internet connection
+### Adding New Tools
 
-### Performance Tuning
-- **Threads:** Adjust based on system resources (default: 10)
-- **Timeout:** Increase for slow networks (default: 300s)
-- **Memory:** Monitor usage for large target lists
+1. Create utility module in `utils/`
+2. Extend `BaseUtility` class
+3. Implement `execute()` method
+4. Add to main workflow
+5. Update configuration files
 
-### Security Considerations
-- Run with appropriate user permissions
-- Validate all inputs
-- Monitor resource usage
-- Implement rate limiting for large scans
+### Testing
+
+```bash
+# Run validation tests
+python validate_production_deployment.py
+
+# Check dependencies
+python hyperrecon.py --validate-deps
+```
 
 ## 🤝 Contributing
 
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
+
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
 
-## 📝 License
+## 📋 Changelog
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+See [CHANGELOG.md](CHANGELOG.md) for version history and updates.
+
+## 📄 License
+
+This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
 
 ## 👨‍💻 Author
 
 **Saurabh Tomar**
-- GitHub: [@saurabhtomar](https://github.com/saurabhtomar)
-- LinkedIn: [saurabhtomar](https://linkedin.com/in/saurabhtomar)
-- Twitter: [@saurabhtomar](https://twitter.com/saurabhtomar)
+- 🐙 GitHub: [@saurabhtomar](https://github.com/shanithakuralg)
+- 💼 LinkedIn: [saurabhtomar](https://www.linkedin.com/in/saurabh-tomar-b3095b21b/)
+- 🐦 Portfolio: [@saurabhtomar](Comming soon)
 
 ## 🙏 Acknowledgments
 
-- ProjectDiscovery team for excellent tools
-- Bug bounty community for feedback and testing
-- Open source contributors
+- [ProjectDiscovery](https://projectdiscovery.io/) for exceptional security tools
+- [Tom Hudson](https://github.com/tomnomnom) for reconnaissance utilities
+- Bug bounty community for continuous feedback and support
 
-## 📞 Support
+## ⚠️ Legal Disclaimer
 
-- **Issues:** [GitHub Issues](https://github.com/saurabhtomar/hyperrecon-pro/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/saurabhtomar/hyperrecon-pro/discussions)
-- **Documentation:** [Wiki](https://github.com/saurabhtomar/hyperrecon-pro/wiki)
+This tool is intended for **authorized security testing and educational purposes only**. Users must ensure compliance with applicable laws and regulations. The author assumes no responsibility for misuse or illegal activities.
 
 ---
 
-⭐ **Star this repository if you find it useful!**
+<div align="center">
+
+**⭐ Star this repository if HyperRecon Pro helps your security research!**
+
+[Report Bug](https://github.com/saurabhtomar/hyperrecon/issues) • [Request Feature](https://github.com/saurabhtomar/hyperrecon/issues) • [Documentation](docs/)
+
+</div>
