@@ -1,0 +1,173 @@
+sensitive_data:
+  # Authentication & Session Management
+  session_id: "[Ss]essionid|sid|JSESSIONID|PHPSESSID|ASP\\.NET_SessionId|connect\\.sid"
+  jwt_token: "eyJ[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+\\.[A-Za-z0-9_-]+"
+  bearer_token: "Bearer\\s+[A-Za-z0-9\\-\\._~\\+\\/]+=*"
+  basic_auth: "Basic\\s+[A-Za-z0-9+/]+=*"
+  
+  # Unique Identifiers
+  uuid: "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+  guid: "\\{[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\\}"
+  
+  # Financial Data
+  credit_card_numbers: "\\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9]{2})[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\\d{3})\\d{11})\\b"
+  ssn: "\\b\\d{3}-\\d{2}-\\d{4}\\b|\\b\\d{9}\\b"
+  
+  # Network & Infrastructure
+  private_ips: "\\b(10\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|172\\.(1[6-9]|2[0-9]|3[0-1])\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)|192\\.168\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?))\\b"
+  ipv6_addresses: "([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}|::1|::ffff:[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}"
+  
+  # API Keys & Tokens
+  api_keys_tokens: "api[-_]?key|access[-_]?token|secret|code|auth|oauth_token|refresh_token"
+  aws_keys: "AKIA[0-9A-Z]{16}|ASIA[0-9A-Z]{16}"
+  aws_secret: "[A-Za-z0-9/+=]{40}"
+  google_api_keys: "AIza[0-9A-Za-z_-]{35}"
+  github_tokens: "ghp_[0-9a-zA-Z]{36}|gho_[0-9a-zA-Z]{36}|ghu_[0-9a-zA-Z]{36}|ghs_[0-9a-zA-Z]{36}|ghr_[0-9a-zA-Z]{36}"
+  slack_tokens: "xox[bpars]-[0-9]{12}-[0-9]{12}-[0-9a-zA-Z]{24}"
+  stripe_keys: "sk_live_[0-9a-zA-Z]{24}|pk_live_[0-9a-zA-Z]{24}"
+  mailgun_keys: "key-[0-9a-zA-Z]{32}"
+  twilio_keys: "SK[0-9a-fA-F]{32}"
+  
+  # Database & Services
+  firebase_db_url: "https:\\/\\/[a-zA-Z0-9_-]+\\.firebaseio\\.com"
+  mongodb_uri: "mongodb(\\+srv)?:\\/\\/[^\\s]+"
+  mysql_uri: "mysql:\\/\\/[^\\s]+"
+  postgres_uri: "postgres(ql)?:\\/\\/[^\\s]+"
+  redis_uri: "redis:\\/\\/[^\\s]+"
+  
+  # File Extensions & Types
+  config_files: "\\.(env|yaml|yml|json|xml|ini|conf|config|properties|toml)(\\?|$|&)"
+  backup_files: "\\.(bak|backup|old|swp|tmp|orig|save|~)(\\?|$|&)"
+  database_files: "\\.(sql|db|dbf|sqlite|mdb|accdb)(\\?|$|&)"
+  log_files: "\\.(log|logs)(\\?|$|&)"
+  key_files: "\\.(key|pem|crt|p12|pfx|jks|keystore)(\\?|$|&)"
+  archive_files: "\\.(zip|rar|7z|tar|gz|bz2)(\\?|$|&)"
+  document_files: "\\.(pdf|doc|docx|xls|xlsx|ppt|pptx)(\\?|$|&)"
+  
+  # Sensitive Paths
+  sensitive_paths: "/(admin|login|password|secret|token|account|user|passwd|pwd|callback|oauth|saml|sso|mail|mobile|number|phone|dashboard|manage|panel|portal|debug|test|dev|staging|backup|config|database|api|private|internal|secure)"
+  
+  # Development & Version Control
+  git_files: "\\.git/|\\.gitignore|\\.gitconfig"
+  svn_files: "\\.svn/"
+  ds_store: "\\.DS_Store"
+  htaccess: "\\.htaccess|\\.htpasswd"
+  
+  # Personal Information
+  email_addresses: "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b"
+  phone_numbers: "\\b(?:\\+?1[-\\.\\s]?)?\\(?[0-9]{3}\\)?[-\\.\\s]?[0-9]{3}[-\\.\\s]?[0-9]{4}\\b"
+  
+  # URL Parameters
+  parametrized_urls: "\\?.*="
+  sensitive_params: "[?&](password|passwd|pwd|secret|token|key|auth|session|login|user|email|phone|ssn|credit|card)="
+  
+  # Passwords & Credentials
+  password_patterns: "password\\s*[:=]\\s*[\"']?[^\\s\"']+|pwd\\s*[:=]\\s*[\"']?[^\\s\"']+|passwd\\s*[:=]\\s*[\"']?[^\\s\"']+"
+  username_patterns: "username\\s*[:=]\\s*[\"']?[^\\s\"']+|user\\s*[:=]\\s*[\"']?[^\\s\"']+|login\\s*[:=]\\s*[\"']?[^\\s\"']+"
+  
+  # Cloud & Services
+  azure_keys: "[0-9a-zA-Z/+]{88}=="
+  digitalocean_tokens: "dop_v1_[0-9a-f]{64}"
+  heroku_keys: "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}"
+  
+  # Cryptocurrency
+  bitcoin_addresses: "[13][a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[a-z0-9]{39,59}"
+  ethereum_addresses: "0x[a-fA-F0-9]{40}"
+
+technology_detection:
+  wordpress:
+    - wp-content
+    - wp-admin
+    - wp-includes
+    - wordpress
+  drupal:
+    - drupal
+    - /sites/default/
+    - /modules/
+    - /themes/
+  joomla:
+    - joomla
+    - administrator
+    - components
+    - modules
+  php:
+    - .php
+    - php
+    - PHPSESSID
+  asp:
+    - .asp
+    - .aspx
+    - ASPSESSIONID
+  java:
+    - .jsp
+    - jsessionid
+    - java
+  nodejs:
+    - node
+    - express
+    - socket.io
+  python:
+    - django
+    - flask
+    - python
+  ruby:
+    - rails
+    - ruby
+    - rack
+  react:
+    - react
+    - _next
+    - webpack
+  angular:
+    - angular
+    - ng-
+  vue:
+    - vue
+    - nuxt
+  nginx:
+    - nginx
+  apache:
+    - apache
+  iis:
+    - microsoft-iis
+    - iis
+
+security_paths:
+  - /admin
+  - /administrator
+  - /login
+  - /wp-admin
+  - /phpmyadmin
+  - /cpanel
+  - /webmail
+  - /ftp
+  - /backup
+  - /.env
+  - /.git
+  - /config
+  - /database
+  - /api
+  - /robots.txt
+  - /sitemap.xml
+  - /debug
+  - /test
+  - /dev
+  - /admin/debug
+  - /dashboard
+  - /manage
+  - /panel
+  - /portal
+  - /secret
+  - /token
+  - /account
+  - /user
+  - /passwd
+  - /pwd
+  - /callback
+  - /oauth
+  - /saml
+  - /sso
+  - /mail
+  - /mobile
+  - /number
+  - /phone
